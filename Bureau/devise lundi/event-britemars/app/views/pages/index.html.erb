@@ -1,0 +1,11 @@
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Bienvenue sur EventBrite!</h1>
+      <p>Enregistrez vous pour commencer</p>
+      <p>
+        <%= link_to 'Enregistrez-vous', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+<% end %>
