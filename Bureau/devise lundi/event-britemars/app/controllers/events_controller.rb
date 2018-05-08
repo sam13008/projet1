@@ -40,6 +40,15 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+    end
+
+    def subscribe
+     @event = Event.find(params[:event_id])
+       @event.attendees << current_user
+    flash.now[:success] = "Tu es bien inscrit"
+    redirect_to root_path
+
+    
   end
 
 

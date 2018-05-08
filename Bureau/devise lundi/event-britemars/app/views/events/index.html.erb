@@ -27,10 +27,12 @@
         <td></td>
         <td><%= User.find(event.creator_id).email %></td>
         <td><%= link_to 'Voir', event %></td>
-        <% if current_user.id == event.creator_id  %>
+        <% if current_user == event.creator  %>
         <td><%= link_to 'Editer', edit_event_path(event) %></td>
         <td><%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Êtes-vous sûr ?' } %></td>
        <% else %>
+       <td><%= link_to  "S'inscrire" , event_subscribe_path(event) , method: :post %></td>
+       
        
       </tr>
       <% end %>
