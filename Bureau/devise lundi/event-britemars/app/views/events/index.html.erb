@@ -25,11 +25,11 @@
         <td><%= event.price %></td>
         <td></td>
         <td></td>
-        <td><%= event.creator_id %></td>
-        <td><%= link_to 'Show', event %></td>
+        <td><%= User.find(event.creator_id).email %></td>
+        <td><%= link_to 'Voir', event %></td>
         <% if current_user.id == event.creator_id  %>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editer', edit_event_path(event) %></td>
+        <td><%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Êtes-vous sûr ?' } %></td>
        <% else %>
        
       </tr>
@@ -41,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'Nouvel évènement', new_event_path %>

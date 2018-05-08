@@ -17,9 +17,15 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
+      <% if user_signed_in? %> 
+       <li> <%= link_to "Mes évènements", profil_path(:id) %> </li>
+        <li> <%= link_to "Tout les évènements", events_path %> </li>
+        <li><%= link_to "Se deconnecter", destroy_user_session_path , method: :delete %> </li>
+        <% else %>
       <li> <%= link_to "Se connecter", new_user_session_path %> </li>
       <li><%= link_to "S'enregistrer", new_user_registration_path %> </li>
-      <li><%= link_to "Se deconnecter", destroy_user_session_path , method: :delete %> </li>
+       <% end %>
+      
     </ul>
   </div>
 </nav>

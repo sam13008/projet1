@@ -2,10 +2,19 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Bienvenue sur EventBrite!</h1>
+
+       <% if user_signed_in? %> 
+       <p>Heureux de vous revoir !!!</p>
+      <p>
+        <%= link_to 'Voir tout les évènements', events_path, class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'Voir mes évènements', profil_path(:id), class: 'btn btn-primary btn-lg' %>
+
+        <% else %>
       <p>Enregistrez vous pour commencer</p>
       <p>
         <%= link_to 'Enregistrez-vous', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
       </p>
+      <% end %>
     </div>
   </div>
 <% end %>
