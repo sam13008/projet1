@@ -17,12 +17,44 @@
 
 <p>
   <strong>Prix:</strong>
-  <%= @event.price %>
+  <%= @event.price%> Euros
 </p>
 
 <p>
-  <strong>Createur de l'évǹement:</strong>
+  <strong>Createur de l'évènement:</strong>
   <%= User.find(@event.creator_id).email %>
 
 </p>
+
+<div class="text-center-right">
+<%= form_tag event_subscribe_path(@event) do %>
+  <article>
+    <% if flash[:error].present? %>
+      
+    <% end %>
+    <label class="amount">
+      <p>Pour rejoindre l'évènement, Merci de payer le prix du ticket : <%= @event.price.to_f   %> €</p>
+      
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="<%= (@event.price)*100 %>"
+          data-currency="eur"
+          data-locale="auto"></script>
+
+<% end %>
+</div>
+<h2>Liste des participants</h2>
+<table>
+
+  <% @event.attendees.each do |attendee|%>
+  <tr>
+    <td><%= attendee.email %></td>
+  </tr>
+<% end %>
+</table>
+
 
